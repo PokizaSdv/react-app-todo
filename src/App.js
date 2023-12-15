@@ -54,7 +54,20 @@ class App extends React.Component {
         }
     };
 
-    
+    isDone = (todoId, isDone) => {
+        this.setState((prevState) => {
+            const updatedTodos = prevState.todos.map((todo) => {
+                if (todo.id === todoId) {
+                    const copy = { ...todo, isDone: isDone };
+                    return copy;
+                }
+                return todo;
+            });
+            return {
+                todos: updatedTodos
+            };
+        });
+    };
 
     render() {
         return (
@@ -81,13 +94,17 @@ class App extends React.Component {
                             >
                                 <span className="todo-text">{todo.text}</span>
 
-                                
+                                <input
+                                    type="checkbox"
+                                    defaultChecked={todo.isDone}
+                                    onChange={(e) => {
+                                        this.isDone(todo.id, e.target.checked);
+                                    }}
+                                ></input>
                             </li>
                         );
                     })}
                 </ul>
-
-                
             </main>
         );
     }
