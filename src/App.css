@@ -1,5 +1,27 @@
 main {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 80px;
+    max-width: 800px;
+    padding: 80px;
 }
+
+input {
+    margin-right: 20px;
+}
+form {
+  display: flex;
+  gap: 16px;
+}
+
+.form-control input,
+.form-control span {
+  display: block;
+}
+
+.form-control span {
+  color: red;
+}
+
+
+li {
+  margin-bottom: 6px;
+}
+
