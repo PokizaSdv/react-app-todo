@@ -69,6 +69,18 @@ class App extends React.Component {
         });
     };
 
+    deleteTodo = (todoId) => {
+        this.setState((prevState) => {
+            const leftTodos = prevState.todos.filter((todo) => {
+                return todo.id !== todoId;
+            });
+            return {
+                todos: leftTodos,
+                showEditModal: false
+            };
+        });
+    };
+
     render() {
         return (
             <main>
@@ -101,6 +113,12 @@ class App extends React.Component {
                                         this.isDone(todo.id, e.target.checked);
                                     }}
                                 ></input>
+
+                                <button
+                                    onClick={() => this.deleteTodo(todo.id)}
+                                >
+                                    X
+                                </button>
                             </li>
                         );
                     })}
