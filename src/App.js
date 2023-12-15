@@ -81,6 +81,48 @@ class App extends React.Component {
         });
     };
 
+    editTodo = (todoId) => {
+        this.setState({
+            showEditModal: true
+        });
+        let todoText = "";
+        for (const todo of this.state.todos) {
+            if (todo.id === todoId) {
+                todoText = todo.text;
+                break;
+            }
+        }
+        this.setState({
+            editingInputValue: todoText,
+            editingTodoId: todoId
+        });
+    };
+
+    handleEditInput = (e) => {
+        this.setState({
+            editingInputValue: e.target.value
+        });
+    };
+
+    submitEdit = () => {
+        this.setState((prevState) => {
+            const updatedTodos = prevState.todos.map((todo) => {
+                if (todo.id === this.state.editingTodoId) {
+                    const copy = {
+                        ...todo,
+                        text: this.state.editingInputValue
+                    };
+                    return copy;
+                }
+                return todo;
+            });
+            return {
+                todos: updatedTodos,
+                showEditModal: false
+            };
+        });
+    };
+
     render() {
         return (
             <main>
@@ -119,10 +161,23 @@ class App extends React.Component {
                                 >
                                     X
                                 </button>
+
+                                <button onClick={() => this.editTodo(todo.id)}>
+                                    Edit
+                                </button>
                             </li>
                         );
                     })}
                 </ul>
+                {this.state.showEditModal && (
+                    <div className="modal">
+                        <input
+                            value={this.state.editingInputValue}
+                            onChange={this.handleEditInput}
+                        />
+                        <button onClick={this.submitEdit}>Update Todo</button>
+                    </div>
+                )}
             </main>
         );
     }

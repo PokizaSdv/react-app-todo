@@ -25,3 +25,17 @@ li {
   margin-bottom: 6px;
 }
 
+.modal {
+  height: 150px;
+  width: 300px;
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 2;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
