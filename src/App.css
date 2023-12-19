@@ -3,29 +3,29 @@ main {
     padding: 80px;
 }
 
-input {
+input,
+button {
     margin-right: 20px;
 }
 form {
-  display: flex;
-  gap: 16px;
+    display: flex;
+    gap: 16px;
 }
 
 .form-control input,
 .form-control span {
-  display: block;
+    display: block;
 }
 
 .form-control span {
-  color: red;
+    color: red;
 }
-
 
 li {
-  margin-bottom: 6px;
+    margin-bottom: 6px;
 }
 
-.modal {
+/* .modal {
   height: 150px;
   width: 300px;
   background-color: aliceblue;
@@ -38,4 +38,8 @@ li {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+} */
+
+.edit-form {
+    padding: 50px;
 }

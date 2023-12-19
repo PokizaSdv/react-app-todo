@@ -1,5 +1,7 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
+import { Dialog } from "@mui/material";
+import { DialogTitle } from "@mui/material";
 import "./App.css";
 
 class App extends React.Component {
@@ -123,6 +125,10 @@ class App extends React.Component {
         });
     };
 
+    closeModal = () => {
+        this.setState({showEditModal: false})
+    }
+
     render() {
         return (
             <main>
@@ -169,7 +175,7 @@ class App extends React.Component {
                         );
                     })}
                 </ul>
-                {this.state.showEditModal && (
+                {/* {this.state.showEditModal && (
                     <div className="modal">
                         <input
                             value={this.state.editingInputValue}
@@ -177,7 +183,24 @@ class App extends React.Component {
                         />
                         <button onClick={this.submitEdit}>Update Todo</button>
                     </div>
-                )}
+                )} */}
+
+                <Dialog
+                    open={this.state.showEditModal}
+                    onClose={this.closeModal}
+                >
+                    <div className="edit-form">
+                        <DialogTitle id="alert-dialog-title">
+                            Edit Todo
+                        </DialogTitle>
+                        <input
+                            value={this.state.editingInputValue}
+                            onChange={this.handleEditInput}
+                        />
+                        <button onClick={this.closeModal} >Cancel</button>
+                        <button onClick={this.submitEdit}>Update Todo</button>
+                    </div>
+                </Dialog>
             </main>
         );
     }
